@@ -1,0 +1,9 @@
+.pageButton{
+    background-color:hotpink ;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
