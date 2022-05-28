@@ -1,9 +1,26 @@
 .pageButton{
-    background-color:hotpink ;
+    background-color:green ;
     border-radius: 5px;
+    border-color:darkgrey;
+    border-width:2px;
     font-size: medium;
     font-weight: bold;
+    margin-left:2px;
+    margin-right:2px;
     color: white;
     padding: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.pageButton:hover{
+    border-color: lime;
+    padding-left:11px;
+    padding-right:11px;
+}
+
+.actionButton{
+    padding: 2px;
+}
+.actionButton:Hover {
+    padding-left: 2px;
+    padding-right:2px;
 }
