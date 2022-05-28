@@ -1,6 +1,14 @@
 .App {
   text-align: center;
+  background-color:peru;
+  height: 100%;
 }
+
+body{
+  background-color:peru;
+}
+
+
 
 .App-logo {
   height: 40vmin;
@@ -26,6 +34,16 @@
 
 .App-link {
   color: #61dafb;
+}
+.App-Header{
+  text-align: left;
+
+}
+.App-Title{
+  color: white;
+  font-weight: bold;
+  font-size:x-large;
+
 }
 
 @keyframes App-logo-spin {

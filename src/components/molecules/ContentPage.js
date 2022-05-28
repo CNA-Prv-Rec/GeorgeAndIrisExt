@@ -1,8 +1,8 @@
 //import "./PageButton.css";
 
-const ContentPage = props => (
+const ContentPage = (props) => (
        <div>
-           <props.Destination />
+           <props.Destination ProductList={props.ProductList} />
        </div>
 
 )

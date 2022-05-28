@@ -1,18 +1,22 @@
 //import logo from './logo.svg';
 import './App.css';
-import FeatureList from './components/organisms/FeatureList';
-import PagerHorizontal from './components/organisms/PagerHorizontal';
+import Pager from './components/organisms/Pager';
+//import TextInput from './components/atoms/TextInput';
+//import FileUpload from './components/atoms/FileUpload';
+import AppHeading from './components/molecules/appHeading';
 
 
 function App() {
   return (
+  
     <div className="App">
-       <FeatureList />
-      <PagerHorizontal />
-    
+      <AppHeading Title="George & Iris's Crop Swap"/>
+      <br />
+      <Pager />
     
     </div>
   );
 }
 
 export default App;
+
