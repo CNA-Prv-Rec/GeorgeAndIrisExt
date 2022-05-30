@@ -6,7 +6,8 @@ const MenuBar = props => (
     <PageButton Title="Sell" onclick={props.onclick} className="pageButton" />
     <PageButton Title="Swap" onclick={props.onclick} className="pageButton" />
     <PageButton Title="Help" onclick={props.onclick} className="pageButton" />
-    <PageButton Title="About Us" onclick={props.onclick} className="pageButton" />
+    <PageButton Title="About" onclick={props.onclick} className="pageButton" />
+    <PageButton Title="Contact Us" onclick={props.onclick} className="pageButton" />
     </div>
 
 )

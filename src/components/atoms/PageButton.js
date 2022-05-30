@@ -1,7 +1,7 @@
 import "./PageButton.css";
 
 const PageButton = props => (
-       <input type="button" className="pageButton {props.className}" value={props.Title} onClick={props.onclick}/>
+       <input type="button" className={props.className} value={props.Title} onClick={props.onclick}/>
 
 )
 

@@ -1,13 +1,41 @@
 .App {
   text-align: center;
-  background-color:peru;
+  background-color:cornsilk;
   height: 100%;
 }
 
 body{
-  background-color:peru;
+  background-color:cornsilk;
+}
+.Accordion{
+ /* border: '2px solid #008f68';*/
+ border:none;
+}
+.AccordionSection{
+ /* border: '1px solid #008f68';*/
+  background-color: cornsilk;
+  border-width:1px;
+  border-style:solid;
+  border-color:white;
+  padding: '5px 10px';
+  margin-top:5px;
+  margin-bottom:5px;
+  font-weight: bold;
 }
 
+.AccordionSection > div{
+  text-align: left;
+}
+
+.AccordionSectionVisible{
+  background:cornsilk;
+ /* border-width: 2px;*/
+  border-style: none;
+/*  border-color: transparent;*/
+  margin: 10px;
+  padding: '10px 20px';
+  font-weight: normal;
+}
 
 
 .App-logo {
@@ -22,14 +50,14 @@ body{
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:chocolate;
 }
 
 .App-link {
@@ -40,10 +68,13 @@ body{
 
 }
 .App-Title{
-  color: white;
+  color: chocolate;
   font-weight: bold;
   font-size:x-large;
 
+}
+.Menu-Pager{
+  background-color:cornsilk;
 }
 
 @keyframes App-logo-spin {
@@ -67,4 +98,17 @@ table.fullBorderedTable.td{
   border-width: 1px;
   border-left: 1px;
   
+}
+
+
+a{
+  color:green;
+  text-decoration: underline;
+}
+a:hover{
+  color:chocolate;
+}
+
+.leftAlignAlways{
+  text-align: left !important;
 }
