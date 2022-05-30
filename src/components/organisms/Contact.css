@@ -1,0 +1,16 @@
+.ContactForm{
+   text-align: center;
+   align-self: center;
+}
+.ContactForm >div{
+    text-align: left;
+  
+}
+.CenterContainer{
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    width:400px;
+    margin:auto;
+    align-content: center;
+}

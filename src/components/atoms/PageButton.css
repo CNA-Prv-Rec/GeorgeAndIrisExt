@@ -24,3 +24,17 @@
     padding-left: 2px;
     padding-right:2px;
 }
+
+.buttonhyperlink{
+    background-color: transparent;
+    border-style:none;
+    font-size:inherit;
+    font-family: inherit;
+    color:green;
+    text-decoration: underline;
+}
+
+.buttonhyperlink:Hover{
+    color:chocolate;
+}
+
