@@ -14,11 +14,17 @@ import axios from 'axios';
 
 
 class Pager extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     state={"currentPage":"Main",
         "destination":ContentMain,
-        "productList":[]
+        "productList":[],
+        "userToken":this.props.userToken
     };
+
+ 
 
     handlePageChange = (e) => {
         this.setState({"currentPage":e.target.value,});
@@ -65,10 +71,10 @@ class Pager extends Component {
 
     render() {
         return (
-            <div class="Menu-Pager">
+            <div className="Menu-Pager">
                 <MenuBar onclick={this.handlePageChange.bind(this)} />
                 <br />
-                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} onPageChange={this.handlePageChange.bind(this)} />
+                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} onPageChange={this.handlePageChange.bind(this)} userToken={this.state.userToken} />
             </div>
 
         );
