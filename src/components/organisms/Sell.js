@@ -1,6 +1,6 @@
-const Sell = () => (
+const Sell = (props) => (
     <div>
-      My Sell Ads:   
+      My Sell Ads:   {props.userToken}
     </div>
 
 )

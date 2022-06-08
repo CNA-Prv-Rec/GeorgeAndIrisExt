@@ -109,6 +109,26 @@ a:hover{
   color:chocolate;
 }
 
+.leftAlign{
+  text-align: left;
+}
+
 .leftAlignAlways{
   text-align: left !important;
+}
+
+
+.redColor{
+  color:red;
+}
+.primarypic{
+  width:30%;
+  border:none;
+
+}
+img.rightwrap{
+  float:right;
+  clear:none;
+  margin:10px;
+  margin-left:20px;
 }

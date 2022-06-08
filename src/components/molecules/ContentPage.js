@@ -2,7 +2,7 @@
 
 const ContentPage = (props) => (
        <div>
-           <props.Destination ProductList={props.ProductList} onPageChange={props.onPageChange} />
+           <props.Destination ProductList={props.ProductList} onPageChange={props.onPageChange} userToken={props.userToken} />
        </div>
 
 )
