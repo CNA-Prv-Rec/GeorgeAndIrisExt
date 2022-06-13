@@ -5,6 +5,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import Privacy from './components/pages/Privacy';
+import TermsOfService from './components/pages/TandC';
 
 
 
@@ -15,7 +18,12 @@ const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+    <Routes>
+              <Route exact path="/" element={ <App />}/>
+              <Route exact path="/privacy" element={<Privacy />}/>
+              <Route exact path="/termsofservice" element={<TermsOfService />}/>
+      </Routes>
+      
     </Router>
   </React.StrictMode>
 );
