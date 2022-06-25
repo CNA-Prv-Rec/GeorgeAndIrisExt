@@ -47,8 +47,8 @@ class Pager extends Component {
                 this.setState({"destination": Swap});
                 break;
             case "My Ads":
-                    this.setState({"destination": MyAds});
-                    break;
+                this.setState({"destination": MyAds});
+                break;
             case "Help":
                 this.setState({"destination": Help});
                 break;
