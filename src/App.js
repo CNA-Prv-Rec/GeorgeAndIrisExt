@@ -5,7 +5,8 @@ import AppHeading from './components/molecules/appHeading';
 import React, { useState } from 'react';
 import {useLocation} from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
+//import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
+
 
 
 function App() {
