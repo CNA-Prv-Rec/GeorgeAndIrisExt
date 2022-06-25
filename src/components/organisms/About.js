@@ -4,7 +4,7 @@ const About = () => (
     <div>
       <h2>About Us</h2>
 
-      <img alt='image of growing peppers' className='primarypic rightwrap' src = {Image} />
+      <img className='primarypic rightwrap' src = {Image} />
       <div className="leftAlign">
       <p>It doesn't really matter who you are, you can still make a difference. To yourself, to your community, even to the world.</p>
 

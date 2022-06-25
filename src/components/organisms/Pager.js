@@ -10,6 +10,7 @@ import Swap from "./Swap";
 import Help from "./Help";
 import About from "./About";
 import Contact from "./Contact";
+import MyAds from "./MyAds";
 import axios from 'axios';
 
 
@@ -45,6 +46,9 @@ class Pager extends Component {
             case "Swap":
                 this.setState({"destination": Swap});
                 break;
+            case "My Ads":
+                    this.setState({"destination": MyAds});
+                    break;
             case "Help":
                 this.setState({"destination": Help});
                 break;

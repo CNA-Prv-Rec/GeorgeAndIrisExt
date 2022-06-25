@@ -132,3 +132,8 @@ img.rightwrap{
   margin:10px;
   margin-left:20px;
 }
+.googleLoginContainer{
+  width:"200px";
+  float:right;
+  padding:10px;
+}
