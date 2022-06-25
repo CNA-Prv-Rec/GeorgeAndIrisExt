@@ -11,6 +11,11 @@
     padding: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.tabButton{
+   padding:5px;
+}
+
+
 .pageButton:hover{
     border-color: lime;
     padding-left:11px;

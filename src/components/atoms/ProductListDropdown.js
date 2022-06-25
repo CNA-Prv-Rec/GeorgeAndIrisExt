@@ -1,14 +1,16 @@
 const ProductListDropdown = props => (
-        <select name="Product">
-                {
-                    props.ProductList.map(function (object) {
-                        return (
-                            <option  key={object.ProductID} value={object.ProductName}>{object.ProductName}</option>
-                        );
-                    })
-                }
+    <select name="Product" onChange={props.onChangeProduct}>
+            {
+                props.ProductList.map(function (object) {
+                    return (
+                        <option  key={object.ProductID} value={object.ProductName} >{object.ProductName} </option>
+                    );
+                },this)
+            }
 
-        </select>
+    </select>
 )
 
+
 export default ProductListDropdown;
+
