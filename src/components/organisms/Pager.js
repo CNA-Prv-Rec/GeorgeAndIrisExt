@@ -15,9 +15,9 @@ import axios from 'axios';
 
 
 class Pager extends Component {
-    constructor(props) {
+    /*constructor(props) {
         super(props);
-    }
+    }*/
 
     state={"currentPage":"Main",
         "destination":ContentMain,

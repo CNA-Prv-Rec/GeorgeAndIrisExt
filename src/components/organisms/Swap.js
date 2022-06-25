@@ -13,25 +13,24 @@ export default class Swap extends Component {
       super(props);
 
       this.onChangeProduct = this.onChangeProduct.bind(this);
-      this.getBuyList = this.getBuyList.bind(this);
+      this.getSwapList = this.getSwapList.bind(this);
 
       this.state = {
           product: '',
           userToken: props.userToken,
-          productList: this.props.ProductList
+          productList: this.props.ProductList,
+          data:null
                
       }
   }
 
   onChangeProduct(e) {
     console.log("changing value to " + e.target.value);
-    this.setState({
-        product: e.target.value
-    });
+    this.setState({product: e.target.value});
   
   }
-  getBuyList(e) {
-    
+  getSwapList(e) {
+    this.setState({data:null});
   }
 
   render() {

@@ -16,7 +16,8 @@ export default class Buy extends Component {
         this.state = {
             product: '',
             userToken: props.userToken,
-            productList: this.props.ProductList
+            productList: this.props.ProductList,
+            data:null
                  
         }
     }
@@ -30,7 +31,7 @@ export default class Buy extends Component {
     }
 
     getBuyList(e) {
-            var x=0;
+        this.setState({data:null});
     }
 
     render() {
