@@ -22,7 +22,12 @@ class Pager extends Component {
     state={"currentPage":"Main",
         "destination":ContentMain,
         "productList":[],
-        "userToken":this.props.userToken
+        "userToken":this.props.userToken,
+        "bearer": this.props.bearer,
+        "email": this.props.email,
+        "userName": this.props.userName,
+        "isLoggedIn": this.props.isLoggedIn,
+        "userDBID": this.props.userDBID
     };
 
  
@@ -76,9 +81,9 @@ class Pager extends Component {
     render() {
         return (
             <div className="Menu-Pager">
-                <MenuBar onclick={this.handlePageChange.bind(this)} />
+                <MenuBar onclick={this.handlePageChange.bind(this)} isLoggedIn={this.state.isLoggedIn} userDBID={this.state.userDBID} />
                 <br />
-                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} onPageChange={this.handlePageChange.bind(this)} userToken={this.state.userToken} />
+                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} onPageChange={this.handlePageChange.bind(this)} userToken={this.state.userToken} isLoggedIn={this.state.isLoggedIn} userDBID={this.state.userDBID}/>
             </div>
 
         );
