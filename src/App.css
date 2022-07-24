@@ -137,3 +137,6 @@ img.rightwrap{
   float:right;
   padding:10px;
 }
+.hiddenItem{
+  display:none;
+}

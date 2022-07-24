@@ -7,6 +7,7 @@ import {useLocation} from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
 import jwt from 'jwt-decode';
+//import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 //var jwt2 = require("jsonwebtoken");
 //import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
 
@@ -15,6 +16,7 @@ import jwt from 'jwt-decode';
 function App() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
+  const [userDBID, setUserDBID] =useState('');
 
   const [bearer, setBearer] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,8 +29,10 @@ function App() {
 
     setBearer('');
     setIsLoggedIn(false);
+    setUserDBID("");
     
   }
+  
 
   /*const onLoginSuccessful = (data) => {
     try 
@@ -45,10 +49,11 @@ function App() {
   }
   */
   const onLoginSuccessful = (data) =>{
-debugger;
+
     setBearer(data.credential);
     setIsLoggedIn(true);
     getGoogleUser(data);
+   // getDBUser(data);
   }
 
   const onLogout = (data) =>{
@@ -57,67 +62,104 @@ debugger;
     setIsLoggedIn(false);
   }
 
-  const getGoogleUser = (data) => {
+  const getDBUser = (data, user, cred) =>{
+    
+   var tokenNew = "[Basic " + cred + "]";
+  debugger;
+  axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth2',
+    {token: cred},
+    {
+  headers: {
+   // 'Authorization': `Basic ${data}`,
+    'Accept': ['application/json']
+    /*'Authorization': data,
+    'Bearer': data*/
+  }
+  })
+  .then((res) => {
     debugger;
+    var data = res.data
+    console.log(res.data);
+    var id = '';
+    try{
+      id = (data.length === 1)?data.insertedId:data._id;
+    }
+    catch(e)
+    {
+        id="";
+    }
+    setUserDBID(id);
+    if (id.length>0)
+    {
+    setIsLoggedIn(true);
+    }
+    else
+    {
+      setIsLoggedIn(false);
+    }
+    
+ 
+  })
+  .catch((error) => {
+  debugger;
+  console.error(error);
+  });
+
+  
+/*
+    axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth',
+    {
+      trial: data   
+    },
+     {
+  headers: {
+    'Authorization': tokenNew,
+    'Authorization': `Basic ${data}`,
+    'Accept': ['application/json']
+  
+  }
+})
+.then((res) => {
+  debugger;
+  console.log(res.data);
+})
+.catch((error) => {
+  debugger;
+  console.error(error);
+    axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpointGIUserAuth2',
+    {user: user},
+    {
+  headers: {
+    'Authorization': data,
+    'Accept': ['application/json']
+   
+  }
+  })
+  .then((res) => {
+  debugger;
+  console.log(res.data);
+  })
+  .catch((error) => {
+  debugger;
+  console.error(error);
+  })
+})
+*/
+
+
+  }
+
+
+  const getGoogleUser = (data) => {
+    
     var user = jwt(data.credential);
     console.log(user);
     setEmail(user.email);
     setUserName(user.name);
+    getDBUser(data, user, data.credential);
 
-    /*
-    {
-    "iss": "https://accounts.google.com",
-    "nbf": 1656761693,
-    "aud": "19528039381-oaav8eau0vcopperem53984u6fo04qss.apps.googleusercontent.com",
-    "sub": "102123291593046375339",
-    "hd": "designwithwisdom.com",
-    "email": "carolyn.anderson@designwithwisdom.com",
-    "email_verified": true,
-    "azp": "19528039381-oaav8eau0vcopperem53984u6fo04qss.apps.googleusercontent.com",
-    "name": "Carolyn Anderson",
-    "picture": "https://lh3.googleusercontent.com/a/AATXAJx_-OjUHP5PEXcAFDt9aIxV57tVZOYaOYOfdSLA=s96-c",
-    "given_name": "Carolyn",
-    "family_name": "Anderson",
-    "iat": 1656761993,
-    "exp": 1656765593,
-    "jti": "93ebfe3c1152327822a1664eda72ed567220e4aa"
-}
+   
 
-    */
-
-    /*var decode1 = jwt2.decode(token1);
-   // console.log(decode1);
-   */
-
-
-
-    /*
-    axios.post("https://oauth2.googleapis.com/auth/", { email, password })
-    .then(res => {
-      const token = res.data.token;
-      const user = jwt(token); // decode your token here
-      localStorage.setItem('token', token);
-      dispatch(actions.authSuccess(token, user));
-    })
-    .catch(err => {
-      dispatch(actions.loginUserFail());
-  });
-  */
-/*
-    axios.post("https://oauth2.googleapis.com/auth/", {
-        token: data?.credential,
-      }).then(response => {
-        debugger;
-      setUserName(response.name);
-      setEmail(response.email);
-     
-    })
-    .catch(function (error) {
-      debugger;
-        console.log(error);
-    });
-    */
-  
 
   }
 
@@ -128,7 +170,7 @@ debugger;
         <GoogleOAuthProvider clientId="19528039381-oaav8eau0vcopperem53984u6fo04qss.apps.googleusercontent.com">
           <AppHeading Title="George & Iris's Crop Swap" onLoginFailed={onLoginFailed} onLoginSuccessful= {onLoginSuccessful} onLogout={onLogout} isLoggedIn={isLoggedIn} />
 
-          <Pager userToken={userToken} />
+          <Pager userToken={userToken} userDBID={userDBID} email={email} userName={userName} bearer={bearer} isLoggedIn={isLoggedIn} />
         </GoogleOAuthProvider>
       
       </div>

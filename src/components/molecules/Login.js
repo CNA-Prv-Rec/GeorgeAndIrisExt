@@ -22,36 +22,22 @@ const Login= (props) =>  {
         props.onLoginFailed(res);
     };
 
-    const setFakeCreds = (res) => {
-        var creds= prompt("Enter token");
-        debugger;
-        if (creds!="")
-        {
-            var data = {credentials:creds};
-            props.onLoginSuccessful(data);
-        }
-
-        setIsLoggedIn(true);
-    }
-
+   
     return (
      
         <div className="googleLoginContainer">
             <GoogleLogin theme='outline' size= "large" shape="pill" width="200px"
                 onSuccess={credentialResponse => {
-                    debugger;
+                    
                     console.log(credentialResponse);
                     onLoginSuccessful(credentialResponse);
                 }}
                 onError={() => {
-                    debugger;
+                    
                     console.log('Login Failed');
                     props.onLoginFailed();
                 }}
             />
-            
-            <PageButton className="fake" Title="Add fake credentials" onclick={(window.location.href.indexOf("localhost:3000")>=0)?setFakeCreds:null} />
-           
 
        
         </div>
