@@ -18,6 +18,7 @@ export default class Swap extends Component {
       this.state = {
           product: '',
           userToken: props.userToken,
+          userDBID:props.userDBID,
           productList: this.props.ProductList,
           data:null
                

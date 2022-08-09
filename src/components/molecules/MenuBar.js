@@ -15,7 +15,7 @@ const MenuBar = props => {
     </div>
     )
 
-    }
+}
 
 export default MenuBar;
 

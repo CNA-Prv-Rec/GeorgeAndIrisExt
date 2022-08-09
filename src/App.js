@@ -11,46 +11,32 @@ import jwt from 'jwt-decode';
 //var jwt2 = require("jsonwebtoken");
 //import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
 
-
+export const UserContext = React.createContext();
 
 function App() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [userDBID, setUserDBID] =useState('');
 
-  const [bearer, setBearer] = useState('');
+  //const [bearer, setBearer] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userToken, setUserToken] = useState('');
 
   const search = useLocation().search;
-  const userToken = new URLSearchParams(search).get('userToken');
+  //const userToken = new URLSearchParams(search).get('userToken');
  // const { token } = req.body;
 
   const onLoginFailed = (data) =>{
 
-    setBearer('');
     setIsLoggedIn(false);
     setUserDBID("");
+    setUserToken("");
     
   }
   
-
-  /*const onLoginSuccessful = (data) => {
-    try 
-    {
-      const result= await axios.post("/auth/", {
-        token: data?.tokenId,
-      });
-
-      setUserName(result.data.user);
-    } 
-    catch (err) {
-      console.log(err);
-    }
-  }
-  */
   const onLoginSuccessful = (data) =>{
 
-    setBearer(data.credential);
+    setUserToken(data.credential);
     setIsLoggedIn(true);
     getGoogleUser(data);
    // getDBUser(data);
@@ -58,94 +44,88 @@ function App() {
 
   const onLogout = (data) =>{
 
-    setBearer('');
+    setUserToken('');
     setIsLoggedIn(false);
   }
 
   const getDBUser = (data, user, cred) =>{
-    
-   var tokenNew = "[Basic " + cred + "]";
-  debugger;
-  axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth2',
-    {token: cred},
-    {
-  headers: {
-   // 'Authorization': `Basic ${data}`,
-    'Accept': ['application/json']
-    /*'Authorization': data,
-    'Bearer': data*/
-  }
-  })
-  .then((res) => {
-    debugger;
-    var data = res.data
-    console.log(res.data);
-    var id = '';
-    try{
-      id = (data.length === 1)?data.insertedId:data._id;
-    }
-    catch(e)
-    {
-        id="";
-    }
-    setUserDBID(id);
-    if (id.length>0)
-    {
-    setIsLoggedIn(true);
-    }
-    else
-    {
-      setIsLoggedIn(false);
-    }
-    
- 
-  })
-  .catch((error) => {
-  debugger;
-  console.error(error);
-  });
+          
+        var tokenNew = "[Basic " + cred + "]";
+      
+        axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth2',
+          {token: cred},
+          {
+        headers: {
+          'Accept': ['application/json']
+        }
+        })
+        .then((res) => {
+          var data = res.data
+          console.log(res.data);
+          var id = '';
+          try{
+            id = (data.length === 1)?data.insertedId:data._id;
+          }
+          catch(e)
+          {
+              id="";
+          }
+          setUserDBID(id);
+          if (id.length>0)
+          {
+          setIsLoggedIn(true);
+          }
+          else
+          {
+            setIsLoggedIn(false);
+          }
+          
+      
+        })
+        .catch((error) => {
+        console.error(error);
+        });
 
-  
-/*
-    axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth',
-    {
-      trial: data   
-    },
-     {
-  headers: {
-    'Authorization': tokenNew,
-    'Authorization': `Basic ${data}`,
-    'Accept': ['application/json']
-  
-  }
-})
-.then((res) => {
-  debugger;
-  console.log(res.data);
-})
-.catch((error) => {
-  debugger;
-  console.error(error);
-    axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpointGIUserAuth2',
-    {user: user},
-    {
-  headers: {
-    'Authorization': data,
-    'Accept': ['application/json']
-   
-  }
-  })
-  .then((res) => {
-  debugger;
-  console.log(res.data);
-  })
-  .catch((error) => {
-  debugger;
-  console.error(error);
-  })
-})
-*/
-
+        
+      /*
+          axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpoint/GIUserAuth',
+          {
+            trial: data   
+          },
+          {
+        headers: {
+          'Authorization': tokenNew,
+          'Authorization': `Basic ${data}`,
+          'Accept': ['application/json']
+        
+        }
+      })
+      .then((res) => {
+        debugger;
+        console.log(res.data);
+      })
+      .catch((error) => {
+        debugger;
+        console.error(error);
+          axios.post('https://data.mongodb-api.com/app/plantlifemt-fiueo/endpointGIUserAuth2',
+          {user: user},
+          {
+        headers: {
+          'Authorization': data,
+          'Accept': ['application/json']
+        
+        }
+        })
+        .then((res) => {
+        debugger;
+        console.log(res.data);
+        })
+        .catch((error) => {
+        debugger;
+        console.error(error);
+        })
+      })
+      */
 
   }
 
@@ -168,9 +148,10 @@ function App() {
       <div className="App">
       
         <GoogleOAuthProvider clientId="19528039381-oaav8eau0vcopperem53984u6fo04qss.apps.googleusercontent.com">
+          
           <AppHeading Title="George & Iris's Crop Swap" onLoginFailed={onLoginFailed} onLoginSuccessful= {onLoginSuccessful} onLogout={onLogout} isLoggedIn={isLoggedIn} />
-
-          <Pager userToken={userToken} userDBID={userDBID} email={email} userName={userName} bearer={bearer} isLoggedIn={isLoggedIn} />
+          <Pager userToken={userToken} userDBID={userDBID} email={email} userName={userName} isLoggedIn={isLoggedIn} />
+         
         </GoogleOAuthProvider>
       
       </div>
