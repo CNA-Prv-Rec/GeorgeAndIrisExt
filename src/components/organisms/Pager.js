@@ -78,12 +78,24 @@ class Pager extends Component {
             })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log("running comonent update on Pager");
+        if (this.props.userDBID !== prevProps.userDBID) {
+            this.setState({userDBID: this.props.userDBID})
+        }
+        if (this.props.userToken !== prevProps.userToken) {
+            this.setState({userToken: this.props.userToken})
+        }
+    }
+
+  
+
     render() {
         return (
             <div className="Menu-Pager">
                 <MenuBar onclick={this.handlePageChange.bind(this)} isLoggedIn={this.state.isLoggedIn} userDBID={this.state.userDBID} />
                 <br />
-                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} onPageChange={this.handlePageChange.bind(this)} userToken={this.state.userToken} isLoggedIn={this.state.isLoggedIn} userDBID={this.state.userDBID}/>
+                <ContentPage Destination={this.state.destination} ProductList={this.state.productList} userDBID={this.props.userDBID} userToken={this.state.userToken} onPageChange={this.handlePageChange.bind(this)} isLoggedIn={this.state.isLoggedIn} />
             </div>
 
         );
